@@ -12,3 +12,7 @@ output "vpc_cidr_block" {
 output "vpc_arn" {
     value = aws_vpc.vpc.arn
 }
+
+output "public_subnet_01_id" {
+  value = aws_subnet.public-sub-01.id
+}

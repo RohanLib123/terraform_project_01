@@ -28,3 +28,18 @@ variable "owner_name" {
   type = string
   description = "Individual or Team Name"
 }
+
+variable "public_subnet_cidrs" {
+  type = map(string)
+  # e.g. { "ap-south-1a" = "10.0.1.0/24", "ap-south-1b" = "10.0.2.0/24" }
+}
+
+
+
+variable "private_subnet_cidrs" {
+  type = map(string)
+  # e.g. { "ap-south-1a" = "10.0.11.0/24", "ap-south-1b" = "10.0.12.0/24" }
+}
+
+
+
