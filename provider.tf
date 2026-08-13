@@ -1,4 +1,5 @@
 terraform {
+    required_version = ">= 1.5.0"
     # This required providers block is check mmaximum supprting verion 5.0
   required_providers {
     aws = {
@@ -13,5 +14,12 @@ provider "aws" {
   region = var.aws_provider_region
   assume_role {
     role_arn = var.workspace_assume_roles[terraform.workspace]
+  }
+
+  default_tags {
+    tags = {
+      ManagedBy = "Terraform"
+      Project = var.project_name
+    }
   }
 }
