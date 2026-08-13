@@ -13,3 +13,9 @@ variable "workspace_assume_roles" {
     }
   
 }
+
+variable "project_name" {
+    type = string
+    description = "Name of Project"
+  
+}
