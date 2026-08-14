@@ -41,5 +41,15 @@ variable "private_subnet_cidrs" {
   # e.g. { "ap-south-1a" = "10.0.11.0/24", "ap-south-1b" = "10.0.12.0/24" }
 }
 
+variable "admin_ip_cidr" {
+  type = string
+  description = "CIDR allowed to SSH into EC2 instance (e.g. your office/VPN ip)"
+}
+
+variable "rds_port" {
+  type = number
+  description = "Port the RDS instance listen on"
+}
+
 
 
