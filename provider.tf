@@ -1,10 +1,10 @@
 terraform {
-    required_version = ">= 1.5.0"
-    # This required providers block is check mmaximum supprting verion 5.0
+  required_version = ">= 1.5.0"
+  # This required providers block is check mmaximum supprting verion 5.0
   required_providers {
     aws = {
-        source = "hashicorp/aws"
-        version = "~> 5.0"
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
     }
   }
 }
@@ -19,7 +19,7 @@ provider "aws" {
   default_tags {
     tags = {
       ManagedBy = "Terraform"
-      Project = var.project_name
+      Project   = var.project_name
     }
   }
 }

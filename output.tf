@@ -18,7 +18,7 @@ output "public_subnet_id_02" {
   value = module.vpc.public_subnet_02_id
 }
 
-output "private_subnet_id_02" {
+output "private_subnet_id_01" {
   value = module.vpc.private_subnet_01_id
 }
 

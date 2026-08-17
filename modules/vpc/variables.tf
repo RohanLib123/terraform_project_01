@@ -1,5 +1,5 @@
 variable "vpc_cidr_block" {
-  type = string
+  type        = string
   description = "CIDR block for vpc"
 
   validation {
@@ -9,24 +9,24 @@ variable "vpc_cidr_block" {
 }
 
 variable "instance_tenancy" {
-  type = string
+  type        = string
   description = "Instance tenancy "
 }
 
 variable "environment" {
-    type = string
-    description = "Name of environment"
-  
+  type        = string
+  description = "Name of environment"
+
 }
 
 variable "project_name" {
-    type = string
-    description = "Name of Project"
-  
+  type        = string
+  description = "Name of Project"
+
 }
 
 variable "owner_name" {
-  type = string
+  type        = string
   description = "Individual or Team Name"
 }
 
@@ -43,12 +43,12 @@ variable "private_subnet_cidrs" {
 }
 
 variable "admin_ip_cidr" {
-  type = string
+  type        = string
   description = "CIDR allowed to SSH into EC2 instance (e.g. your office/VPN ip)"
 }
 
 variable "rds_port" {
-  type = number
+  type        = number
   description = "Port the RDS instance listen on e.g 1433"
 }
 
