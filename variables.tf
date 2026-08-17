@@ -5,6 +5,7 @@ variable "aws_provider_region" {
 }
 
 variable "workspace_assume_roles" {
+    type = map(string)
     default = {
         # arn of role that is going to use for dev environment
         dev = "arn:aws:iam::732343865328:role/terraform-dev-role-01"
@@ -14,11 +15,6 @@ variable "workspace_assume_roles" {
   
 }
 
-variable "project_name" {
-    type = string
-    description = "Name of Project"
-  
-}
 
 variable "vpc_cidr_block" {
   type = string
@@ -214,7 +210,7 @@ variable "storage_allocated" {
 
 variable "bckp_retention_period" {
   type = number
-  description = "Backup retention period"
+  description = "Backup retention period e.g 7"
 }
 
 variable "backup_window" {
