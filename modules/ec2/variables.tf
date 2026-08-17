@@ -56,7 +56,7 @@ variable "ssh_key_name" {
 }
 
 variable "root_volume_size" {
-  type        = string
+  type        = number
   description = "size of root volume e.g 8GB, 10GB"
 }
 

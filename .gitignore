@@ -44,3 +44,15 @@ terraform.rc
 # planout
 
 .terraform.lock.hcl
+
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+crash.log
+crash.*.log
+*.pem
+*.key
+backend-dev.hcl
+*.tfplan

@@ -60,14 +60,12 @@ variable "rds_pass" {
   type        = string
   description = "password for sql user"
   sensitive   = true
-  ephemeral   = true
 }
 
 variable "rds_user_name" {
   type        = string
   description = "username for sql user"
   sensitive   = true
-  ephemeral   = true
 }
 
 variable "sg_rds_id" {

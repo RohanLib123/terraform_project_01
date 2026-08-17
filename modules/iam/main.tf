@@ -85,22 +85,24 @@ resource "aws_iam_instance_profile" "s3_readonly_profile" {
 #Creating ROle and policies for db for monitoring
 #######
 
+data "aws_iam_policy_document" "rds_monitoring_assume_role" {
+  statement {
+    actions = ["sts:AssumeRole"]
+
+    effect = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = ["monitoring.rds.amazonaws.com"]
+    }
+  }
+}
+
 # creating an IAM role with the trust policy for RDS monitoring
 resource "aws_iam_role" "rds_monitoring" {
   name = "rds-enhanced-monitoring-role-${var.project_name}-${var.environment}"
 
-  assume_role_policy = jsondecode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action = "sts:AssumeRole"
-        Effect = "Allow"
-        Principal = {
-          Service = "monitoring.rds.amazonaws.com"
-        }
-      }
-    ]
-  })
+  assume_role_policy = data.aws_iam_policy_document.rds_monitoring_assume_role.json
 }
 
 

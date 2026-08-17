@@ -7,7 +7,7 @@ output "vpc_id" {
 }
 
 output "rds_endpoint" {
-  value = module.aws_db_instance.rds_server_endpoint
+  value = module.rds_db_instnace_01.rds_server_endpoint
 }
 
 output "public_subnet_id_01" {
@@ -31,5 +31,6 @@ output "ec2_instance_id" {
 }
 
 output "rds_identifier" {
-  value = module.aws_db_instance.rds_identifier
+  value = module.rds_db_instnace_01.rds_identifier
 }
+

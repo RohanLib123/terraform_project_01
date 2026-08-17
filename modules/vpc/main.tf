@@ -1,3 +1,4 @@
+
 # Setting Locals
 locals {
   common_tags = {
@@ -7,19 +8,16 @@ locals {
     Owner       = var.owner_name
   }
 
-
   public_subnet_ids = {
-    "public-subnet-01-${var.project_name}-${var.environment}" = aws_subnet.public-sub-01.id
-    "public-subnet-02-${var.project_name}-${var.environment}" = aws_subnet.public-sub-02.id
+    for az, subnet in aws_subnet.public :
+    az => subnet.id
   }
-
 
   private_subnet_ids = {
-    "private-subnet-01-${var.project_name}-${var.environment}" = aws_subnet.private-sub-01.id
-    "private-subnet-02-${var.project_name}-${var.environment}" = aws_subnet.private-sub-02.id
+    for az, subnet in aws_subnet.private :
+    az => subnet.id
   }
 }
-
 # Creating VPC
 resource "aws_vpc" "vpc" {
   cidr_block           = var.vpc_cidr_block
@@ -38,8 +36,8 @@ resource "aws_vpc" "vpc" {
 
 
 
-# Creating Public Subnet 01
-resource "aws_subnet" "public-sub-01" {
+# Creating Public Subnet 
+resource "aws_subnet" "public" {
   for_each                = var.public_subnet_cidrs
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = each.value
@@ -48,29 +46,13 @@ resource "aws_subnet" "public-sub-01" {
 
 
   tags = merge(local.common_tags, {
-    Name = "public-subnet-01-${var.project_name}-${var.environment}"
+    Name = "public-subnet-${each.key}-${var.project_name}-${var.environment}"
     Tier = "public"
   })
 }
 
-
-# Creating Public Subnet 02
-resource "aws_subnet" "public-sub-02" {
-  for_each                = var.public_subnet_cidrs
-  vpc_id                  = aws_vpc.vpc.id
-  cidr_block              = each.value
-  availability_zone       = each.key
-  map_public_ip_on_launch = true
-
-  tags = merge(local.common_tags, {
-    Name = "public-subnet-02-${var.project_name}-${var.environment}"
-    Tier = "public"
-  })
-
-}
-
-# Creating Private Subnet 01
-resource "aws_subnet" "private-sub-01" {
+# Creating Private Subnet 
+resource "aws_subnet" "private" {
   for_each                = var.private_subnet_cidrs
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = each.value
@@ -78,23 +60,7 @@ resource "aws_subnet" "private-sub-01" {
   map_public_ip_on_launch = false
 
   tags = merge(local.common_tags, {
-    Name = "private-subnet-01-${var.project_name}-${var.environment}"
-    Tier = "private"
-  })
-
-}
-
-
-# Creating Private Subnet 02
-resource "aws_subnet" "private-sub-02" {
-  for_each                = var.private_subnet_cidrs
-  vpc_id                  = aws_vpc.vpc.id
-  cidr_block              = each.value
-  availability_zone       = each.key
-  map_public_ip_on_launch = false
-
-  tags = merge(local.common_tags, {
-    Name = "private-subnet-02-${var.project_name}-${var.environment}"
+    Name = "private-subnet-${each.key}-${var.project_name}-${var.environment}"
     Tier = "private"
   })
 

@@ -43,8 +43,9 @@ variable "private_subnet_cidrs" {
 }
 
 variable "admin_ip_cidr" {
+  description = "CIDR block allowed to access EC2 instances over SSH"
   type        = string
-  description = "CIDR allowed to SSH into EC2 instance (e.g. your office/VPN ip)"
+  default     = "0.0.0.0/0"
 }
 
 variable "rds_port" {

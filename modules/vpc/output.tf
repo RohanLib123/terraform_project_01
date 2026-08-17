@@ -13,24 +13,20 @@ output "vpc_arn" {
   value = aws_vpc.vpc.arn
 }
 
-#exposing Public subnet 01 id
 output "public_subnet_01_id" {
-  value = aws_subnet.public-sub-01.id
+  value = aws_subnet.public["ap-south-1a"].id
 }
 
-#exposing Public subnet 02 id
 output "public_subnet_02_id" {
-  value = aws_subnet.public-sub-02.id
+  value = aws_subnet.public["ap-south-1b"].id
 }
 
-#exposing Private subnet 01 id
 output "private_subnet_01_id" {
-  value = aws_subnet.private-sub-01
+  value = aws_subnet.private["ap-south-1a"].id
 }
 
-#exposing Private subnet 02 id
-output "private_subnet_o2_id" {
-  value = aws_subnet.private-sub-02.id
+output "private_subnet_02_id" {
+  value = aws_subnet.private["ap-south-1b"].id
 }
 
 #Exposing Internet Gateway id

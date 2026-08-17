@@ -78,20 +78,9 @@ variable "ec2_instance_type" {
   description = "Instance type according to requirement eg. t2.mirco, t3.micro"
 }
 
-variable "sg_ec2_id" {
-  type        = string
-  description = "security group id exposed by ec2-sg module "
-}
 
-variable "public_subnet_01_id" {
-  type        = string
-  description = "Subnet Id exposed by public-sub-01 module "
-}
 
-variable "s3_readonly_instance_profile_name" {
-  type        = string
-  description = "Instance profile name exposed by s3-readonly-profile module"
-}
+
 
 variable "ssh_key_name" {
   type        = string
@@ -99,7 +88,7 @@ variable "ssh_key_name" {
 }
 
 variable "root_volume_size" {
-  type        = string
+  type        = number
   description = "size of root volume e.g 8GB, 10GB"
 }
 
@@ -141,12 +130,6 @@ variable "rds_kms_key_id" {
   description = "KMS key id for rds instance"
 }
 
-variable "private_subnet_01_id" {
-  type        = string
-  description = "subnet id exposed by private-sub-01 "
-}
-
-
 variable "rds_identifier" {
   type        = string
   description = "rds identifier e.g sql-instance-demo"
@@ -156,20 +139,15 @@ variable "rds_pass" {
   type        = string
   description = "password for sql user"
   sensitive   = true
-  ephemeral   = true
 }
 
 variable "rds_user_name" {
   type        = string
   description = "username for sql user"
   sensitive   = true
-  ephemeral   = true
 }
 
-variable "sg_rds_id" {
-  type        = string
-  description = "rds security group id exposed by rds-sg "
-}
+
 
 variable "rds_instance_profile_name" {
   type        = string
@@ -201,24 +179,7 @@ variable "monitoring_interval_value" {
   description = "moitoring interval value e.g 60"
 }
 
-variable "rds_monitoring_role_arn" {
-  type        = string
-  description = "role arn for rds monitoring exposed by rds-monitoring module"
-}
 
 
-variable "backend_bucket_name" {
-  type        = string
-  description = "backend s3 bucket name"
-}
 
-variable "backend_key" {
-  type        = string
-  description = "path of terraform.tfstate in backend bucket"
-}
-
-variable "backend_bucket_region" {
-  type        = string
-  description = "Region where backend bucker is"
-}
 
