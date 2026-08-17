@@ -17,8 +17,8 @@ resource "aws_instance" "instance-for-s3" {
   vpc_security_group_ids      = [var.sg_ec2_id]
   iam_instance_profile        = var.s3_readonly_instance_profile_name
   tenancy                     = var.instance_tenancy
-  disable_api_stop            = true
-  disable_api_termination     = true
+  disable_api_stop            = false
+  disable_api_termination     = false
   key_name                    = var.ssh_key_name
   monitoring                  = true
   ebs_optimized               = true

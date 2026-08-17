@@ -24,9 +24,7 @@ resource "aws_vpc" "vpc" {
   instance_tenancy     = var.instance_tenancy
   enable_dns_hostnames = true
   enable_dns_support   = true
-  lifecycle {
-    prevent_destroy = true
-  }
+  
 
   tags = merge(local.common_tags, {
     Name = "vpc-${var.project_name}-${var.environment}"
@@ -70,9 +68,7 @@ resource "aws_subnet" "private" {
 # Creating Internet Gateway
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
-  lifecycle {
-    prevent_destroy = true
-  }
+  
 
   tags = merge(local.common_tags, {
     Name = "Internet-gateway-01-${var.project_name}-${var.environment}"
