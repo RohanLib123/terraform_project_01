@@ -232,3 +232,20 @@ variable "rds_monitoring_role_arn" {
   type = string
   description = "role arn for rds monitoring exposed by rds-monitoring module"
 }
+
+
+variable "backend_bucket_name" {
+  type = string
+  description = "backend s3 bucket name"
+}
+
+variable "backend_key" {
+  type = string
+  description = "path of terraform.tfstate in backend bucket"
+}
+
+variable "backend_bucket_region" {
+  type = string
+  description = "Region where backend bucker is"
+}
+

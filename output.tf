@@ -31,5 +31,5 @@ output "ec2_instance_id" {
 }
 
 output "rds_identifier" {
-  value = 
+  value = module.aws_db_instance.rds_identifier
 }
