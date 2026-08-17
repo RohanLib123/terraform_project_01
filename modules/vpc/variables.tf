@@ -12,6 +12,7 @@ variable "instance_tenancy" {
   type = string
   description = "Instance tenancy "
 }
+
 variable "environment" {
     type = string
     description = "Name of environment"
@@ -48,7 +49,7 @@ variable "admin_ip_cidr" {
 
 variable "rds_port" {
   type = number
-  description = "Port the RDS instance listen on"
+  description = "Port the RDS instance listen on e.g 1433"
 }
 
 

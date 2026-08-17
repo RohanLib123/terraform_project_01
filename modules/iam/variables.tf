@@ -19,3 +19,4 @@ variable "s3_bucket_name" {
     type = string
     description = "The role of bucket name this role can read from"
 }
+
