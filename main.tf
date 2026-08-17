@@ -55,13 +55,13 @@ module "rds_db_instnace_01" {
   rds_pass                  = var.rds_pass
   rds_user_name             = var.rds_user_name
   sg_rds_id                 = module.vpc.sg_rds_id
-  rds_instance_profile_name = var.rds_instance_profile_name
+  rds_instance_profile_name = module.s3_readonly_role.rds_custom_sqlserver_instance_profile_name
   storage_allocated         = var.storage_allocated
   bckp_retention_period     = var.bckp_retention_period
   backup_window             = var.backup_window
   maintenance_window        = var.maintenance_window
-  monitoring_interval_value = var.monitoring_interval_value
-  rds_monitoring_role_arn   = module.s3_readonly_role.rds_monitoring_role_arn
+
+  depends_on = [module.s3_readonly_role, module.vpc]
 }
 
 

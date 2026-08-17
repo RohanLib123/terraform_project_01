@@ -111,3 +111,49 @@ resource "aws_iam_role_policy_attachment" "rds_monitoring_attach" {
   role       = aws_iam_role.rds_monitoring.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonRDSEnhancedMonitoringRole"
 }
+
+# ---------------------------------------------------------
+# RDS Custom SQL Server IAM Role
+# ---------------------------------------------------------
+
+data "aws_iam_policy_document" "rds_custom_assume_role" {
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "sts:AssumeRole"
+    ]
+
+    principals {
+      type = "Service"
+
+      identifiers = [
+        "ec2.amazonaws.com"
+      ]
+    }
+  }
+}
+
+resource "aws_iam_role" "rds_custom_sqlserver" {
+  name = "AWSRDSCustomSQLServerRole-${var.project_name}-${var.environment}"
+
+  assume_role_policy = data.aws_iam_policy_document.rds_custom_assume_role.json
+
+  description = "IAM role used by RDS Custom SQL Server"
+
+  tags = merge(local.common_tags)
+}
+
+resource "aws_iam_role_policy_attachment" "rds_custom_sqlserver_instance_profile" {
+  role       = aws_iam_role.rds_custom_sqlserver.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonRDSCustomInstanceProfileRolePolicy"
+}
+
+resource "aws_iam_instance_profile" "rds_custom_sqlserver_profile" {
+  name = "AWSRDSCustomSQLServerInstnaceProfile"
+
+  role = aws_iam_role.rds_custom_sqlserver.name
+
+  tags = merge(local.common_tags)
+}
+

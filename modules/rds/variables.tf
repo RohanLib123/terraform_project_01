@@ -97,13 +97,3 @@ variable "maintenance_window" {
   type        = string
   description = "Maintenance window for db e.g. sun:20:00-sun:21:00"
 }
-
-variable "monitoring_interval_value" {
-  type        = number
-  description = "moitoring interval value e.g 60"
-}
-
-variable "rds_monitoring_role_arn" {
-  type        = string
-  description = "role arn for rds monitoring exposed by rds-monitoring module"
-}

@@ -148,12 +148,6 @@ variable "rds_user_name" {
 }
 
 
-
-variable "rds_instance_profile_name" {
-  type        = string
-  description = "RDS instance profile name e.g. AWSRDSCustomSQLServerInstnaceProfile"
-}
-
 variable "storage_allocated" {
   type        = number
   description = "value of allocated storafe e.g 500"
@@ -174,10 +168,6 @@ variable "maintenance_window" {
   description = "Maintenance window for db e.g. sun:20:00-sun:21:00"
 }
 
-variable "monitoring_interval_value" {
-  type        = number
-  description = "moitoring interval value e.g 60"
-}
 
 
 

@@ -7,5 +7,9 @@ output "s3_readonly_instance_profile_name" {
 }
 
 output "rds_monitoring_role_arn" {
-  value = aws_iam_role.rds_monitoring.arn
+  value = aws_iam_role.rds_custom_sqlserver
+}
+
+output "rds_custom_sqlserver_instance_profile_name" {
+  value = aws_iam_instance_profile.rds_custom_sqlserver_profile.name
 }

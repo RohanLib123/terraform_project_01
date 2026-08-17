@@ -24,37 +24,32 @@ data "aws_kms_key" "by_id" {
 
 #Creating RDS db instance 
 resource "aws_db_instance" "rds_db_instnace_01" {
-  allocated_storage               = var.storage_allocated
-  auto_minor_version_upgrade      = false                         # Custom for sql server does not support minor version upgrades
-  custom_iam_instance_profile     = var.rds_instance_profile_name # Instance profile is require for custom SQL server
-  backup_retention_period         = var.bckp_retention_period
-  db_subnet_group_name            = aws_db_subnet_group.db_subnet_group.name
-  engine                          = data.aws_rds_orderable_db_instance.custom-sqlserver.engine
-  engine_version                  = data.aws_rds_orderable_db_instance.custom-sqlserver.engine_version
-  identifier                      = var.rds_identifier
-  instance_class                  = data.aws_rds_orderable_db_instance.custom-sqlserver.instance_class
-  kms_key_id                      = data.aws_kms_key.by_id.arn
-  multi_az                        = false # Custom for sql server does not support multi az
-  password                        = var.rds_pass
-  storage_encrypted               = true
-  username                        = var.rds_user_name
-  vpc_security_group_ids          = [var.sg_rds_id]
-  publicly_accessible             = false
-  deletion_protection             = true
-  skip_final_snapshot             = false
-  storage_type                    = data.aws_rds_orderable_db_instance.custom-sqlserver.storage_type
-  copy_tags_to_snapshot           = true
-  backup_window                   = var.backup_window
-  monitoring_interval             = var.monitoring_interval_value
-  monitoring_role_arn             = var.rds_monitoring_role_arn
-  performance_insights_enabled    = true
-  performance_insights_kms_key_id = data.aws_kms_key.by_id.arn
-
+  allocated_storage           = var.storage_allocated
+  auto_minor_version_upgrade  = false                         # Custom for sql server does not support minor version upgrades
+  custom_iam_instance_profile = var.rds_instance_profile_name # Instance profile is require for custom SQL server
+  backup_retention_period     = var.bckp_retention_period
+  db_subnet_group_name        = aws_db_subnet_group.db_subnet_group.name
+  engine                      = data.aws_rds_orderable_db_instance.custom-sqlserver.engine
+  engine_version              = data.aws_rds_orderable_db_instance.custom-sqlserver.engine_version
+  identifier                  = var.rds_identifier
+  instance_class              = data.aws_rds_orderable_db_instance.custom-sqlserver.instance_class
+  kms_key_id                  = data.aws_kms_key.by_id.arn
+  multi_az                    = false # Custom for sql server does not support multi az
+  password                    = var.rds_pass
+  storage_encrypted           = true
+  username                    = var.rds_user_name
+  vpc_security_group_ids      = [var.sg_rds_id]
+  publicly_accessible         = false
+  deletion_protection         = false
+  skip_final_snapshot         = true
+  storage_type                = data.aws_rds_orderable_db_instance.custom-sqlserver.storage_type
+  copy_tags_to_snapshot       = true
+  backup_window               = var.backup_window
 
 
   lifecycle {
-    prevent_destroy = true
-    ignore_changes  = [password]
+
+    ignore_changes = [password]
   }
 
 
